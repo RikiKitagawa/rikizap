@@ -2,9 +2,12 @@ services:
   vue-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
+    container_name: rikizap-nginx
+    networks:
+      - shared-net
     restart: always
-    ports:
-      - "80:5173"
-    environment:
-      - NODE_ENV=production
+
+networks:
+  shared-net:
+    external: true  
