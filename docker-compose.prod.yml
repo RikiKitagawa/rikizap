@@ -1,7 +1,7 @@
 services:
   vue-app:
     build:
-      context: .
+      context: ./app
       dockerfile: Dockerfile.prod
     container_name: rikizap-nginx
     networks:
@@ -10,4 +10,4 @@ services:
 
 networks:
   shared-net:
-    external: true  
+    external: true
