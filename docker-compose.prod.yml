@@ -1,9 +1,10 @@
 services:
-  web:
+  vue-app:
     build:
       context: .
-      dockerfile: docker/Dockerfile.prod
-    ports:
-      - "80:80" 
-      - "443:443"
+      dockerfile: Dockerfile
     restart: always
+    ports:
+      - "80:5173"
+    environment:
+      - NODE_ENV=production
