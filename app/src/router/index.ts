@@ -10,7 +10,7 @@ const routes = [
         component: Home,
     },
     {
-        path: "/contact", // お問い合わせ (rikizap.com/contact)
+        path: "/contact", // ご依頼・ご質問 (rikizap.com/contact)
         name: "contact",
         component: Contact,
     },

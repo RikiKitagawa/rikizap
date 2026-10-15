@@ -2,11 +2,11 @@
   <v-app>
     <!-- ヘッダー（上部バー） -->
     <v-app-bar color="black" flat>
-      <v-app-bar-title>RIKIZAP.COM</v-app-bar-title>
+      <v-app-bar-title>RIKIZAP</v-app-bar-title>
       <template v-slot:append>
         <!-- ページを切り替えるリンク（vue-routerの機能：to="..."でパスを指定） -->
         <v-btn to="/" text>ホーム</v-btn>
-        <v-btn to="/contact" text>お問い合わせ</v-btn>
+        <v-btn to="/contact" text>ご依頼・ご質問</v-btn>
       </template>
     </v-app-bar>
 
