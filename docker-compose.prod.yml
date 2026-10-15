@@ -1,7 +1,7 @@
 services:
   vue-app:
     build:
-      context: ./app
+      context: .
       dockerfile: Dockerfile.prod
     container_name: rikizap-nginx
     networks:

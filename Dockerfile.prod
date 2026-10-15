@@ -1,12 +1,14 @@
 FROM node:24-slim AS builder
 WORKDIR /app
-COPY package*.json ./
+COPY app/package*.json ./
 RUN npm install
-COPY . .
-RUN npm run build
+COPY app/ .
+
+ENV NODE_OPTIONS="--max-old-space-size=1024"
+
+RUN npx vite build
 
 FROM nginx:alpine
-
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 RUN mkdir -p /var/www/certbot
