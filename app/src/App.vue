@@ -2,9 +2,11 @@
   <v-app>
     <!-- ヘッダー（上部バー） -->
     <v-app-bar color="black" flat>
-      <v-app-bar-title class="font-weight-bold">
+      <!-- ▼ to="/" を指定して、クリックするとHome.vueに飛ぶように変更しました ▼ -->
+      <v-app-bar-title class="font-weight-bold" style="cursor: pointer;" @click="$router.push('/')">
         <span class="custom-green-text">RIKI</span>ZAP
       </v-app-bar-title>
+
       <template v-slot:append>
         <!-- ページを切り替えるリンク -->
         <v-btn to="/" class="text-white">ホーム</v-btn>
