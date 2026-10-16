@@ -2,27 +2,36 @@
   <v-app>
     <!-- ヘッダー（上部バー） -->
     <v-app-bar color="black" flat>
-      <v-app-bar-title>RIKIZAP</v-app-bar-title>
+      <!-- ▼ to="/" を指定して、クリックするとHome.vueに飛ぶように変更しました ▼ -->
+      <v-app-bar-title class="font-weight-bold" style="cursor: pointer;" @click="$router.push('/')">
+        <span class="custom-green-text">RIKI</span>ZAP
+      </v-app-bar-title>
+
       <template v-slot:append>
-        <!-- ページを切り替えるリンク（vue-routerの機能：to="..."でパスを指定） -->
-        <v-btn to="/" text>ホーム</v-btn>
-        <v-btn to="/contact" text>ご依頼・ご質問</v-btn>
+        <!-- ページを切り替えるリンク -->
+        <v-btn to="/" class="text-white">ホーム</v-btn>
+        <v-btn to="/contact" class="text-white">ご依頼・ご質問</v-btn>
       </template>
     </v-app-bar>
 
     <!-- メインコンテンツ領域 -->
     <v-main>
-      <!-- ★ここにURLに合わせたビュー（HomeやContact）が切り替わって表示されます -->
       <router-view />
     </v-main>
 
     <!-- フッター -->
-    <v-footer app class="text-center d-flex flex-column" color="grey-darken-4">
+    <v-footer app class="text-center d-flex flex-column text-grey-lighten-1" color="grey-darken-4">
       <div>&copy; 2026 RIKIZAP. All rights reserved.</div>
     </v-footer>
   </v-app>
 </template>
 
 <script setup>
-// Composition API の場合は特に書かなくても動きます
+// Composition API
 </script>
+
+<style scoped>
+.custom-green-text {
+  color: #6acc99 !important;
+}
+</style>
