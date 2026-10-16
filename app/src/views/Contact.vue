@@ -1,8 +1,9 @@
 <template>
-  <v-container class="py-8" style="max-width: 600px;">
-    <h1 class="text-h4 font-weight-bold mb-4">ご依頼・ご質問</h1>
-    <p class="text-body-1 text-grey-darken-1 mb-6">
-      ご依頼やご質問はこちらからお気軽にお問い合わせください。<br>現在、新規のwebサービス作成依頼は受けておりませんのでご注意ください。
+  <v-container class="py-12" style="max-width: 600px;">
+    <h1 class="text-h4 font-weight-bold mb-2">ご依頼・ご質問</h1>
+    <div class="custom-green-bg mb-6" style="width: 50px; height: 3px;"></div>
+    <p class="text-body-1 text-grey-darken-1 mb-8">
+      ご依頼やご質問はこちらからお気軽にお問い合わせください。
     </p>
 
     <!-- フォーム部分 -->
@@ -29,14 +30,13 @@
         class="mb-4"
       ></v-text-field>
 
-      <!-- ▼ お問い合わせ種別（見やすくしたカスタムラジオボタンエリア） ▼ -->
+      <!-- お問い合わせ種別（カスタムラジオボタン） -->
       <div class="mb-6">
-        <!-- 文字色をしっかり見やすい濃いグレー（または調整した色）に変更 -->
         <div class="text-subtitle-2 font-weight-bold text-grey-darken-3 mb-2">
           お問い合わせ種別
         </div>
         
-        <div class="d-flex gap-6">
+        <div class="d-flex">
           <label class="custom-radio-label mr-6">
             <input type="radio" v-model="category" value="request" class="custom-radio-input" />
             <span class="radio-circle"></span>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <!-- お問い合わせ内容（選択によってラベルが切り替わります） -->
+      <!-- お問い合わせ内容 -->
       <v-textarea
         v-model="message"
         :label="category === 'request' ? 'ご依頼内容' : 'ご質問内容'"
@@ -59,17 +59,16 @@
         required
         variant="outlined"
         rows="5"
-        class="mb-4"
+        class="mb-6"
       ></v-textarea>
 
       <!-- 送信ボタン -->
       <v-btn
         :disabled="!valid"
-        color="amber-darken-2"
         size="large"
         block
         type="submit"
-        class="font-weight-bold text-black"
+        class="font-weight-bold text-black custom-green-btn"
       >
         送信する
       </v-btn>
@@ -85,15 +84,13 @@
 <script setup>
 import { ref } from 'vue'
 
-// 入力データ
 const valid = ref(false)
-const category = ref('request') // 初期値は 'request'（ご依頼）
+const category = ref('request')
 const name = ref('')
 const email = ref('')
 const message = ref('')
 const submitted = ref(false)
 
-// 入力チェック（バリデーションルール）
 const nameRules = [
   v => !!v || 'お名前を入力してください'
 ]
@@ -105,12 +102,18 @@ const messageRules = [
   v => !!v || '内容を入力してください'
 ]
 
-// 送信処理
 const submitForm = () => {
   if (valid.value) {
+    console.log('【お問合せデータ】', {
+      種別: category.value === 'request' ? 'ご依頼' : 'ご質問',
+      お名前: name.value,
+      メールアドレス: email.value,
+      内容: message.value,
+      日時: new Date().toLocaleString()
+    })
+
     submitted.value = true
     
-    // フォームのリセット
     name.value = ''
     email.value = ''
     message.value = ''
@@ -120,7 +123,15 @@ const submitForm = () => {
 </script>
 
 <style scoped>
-/* ── ラジオボタンのカスタムスタイル ── */
+.custom-green-bg {
+  background-color: #6acc99 !important;
+}
+
+.custom-green-btn {
+  background-color: #6acc99 !important;
+}
+
+/* ラジオボタンのカスタムスタイル */
 .custom-radio-label {
   display: inline-flex;
   align-items: center;
@@ -129,16 +140,14 @@ const submitForm = () => {
   user-select: none;
 }
 
-/* 元の標準ラジオボタンを隠す */
 .custom-radio-input {
   display: none;
 }
 
-/* 外側の丸（円） */
 .radio-circle {
   width: 20px;
   height: 20px;
-  border: 2px solid #757575; /* 枠線の色 */
+  border: 2px solid #757575;
   border-radius: 50%;
   margin-right: 8px;
   display: inline-flex;
@@ -148,17 +157,15 @@ const submitForm = () => {
   background-color: #fff;
 }
 
-/* 選択された（checked）ときの外側と内側の塗りつぶし表現 */
 .custom-radio-input:checked + .radio-circle {
-  border-color: #ffa000; /* RIZAP風のアンバー・オレンジ系カラー */
+  border-color: #6acc99;
 }
 
-/* 選択されたときに中身をポチッと塗りつぶす円 */
 .custom-radio-input:checked + .radio-circle::after {
   content: '';
   width: 10px;
   height: 10px;
-  background-color: #ffa000;
+  background-color: #6acc99;
   border-radius: 50%;
 }
 </style>

@@ -1,24 +1,29 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Contact from "../views/Contact.vue";
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
+import Contact from '../views/Contact.vue'
+import FeatureDetail from '../views/FeatureDetail.vue'
 
-// ルート（道順）の定義
 const routes = [
     {
-        path: "/", // トップページ (rikizap.com/)
-        name: "home",
-        component: Home,
+    path: '/',
+    name: 'home',
+    component: Home
     },
     {
-        path: "/contact", // ご依頼・ご質問 (rikizap.com/contact)
-        name: "contact",
-        component: Contact,
+    path: '/contact',
+    name: 'contact',
+    component: Contact
     },
-];
+    {
+    path: '/feature',
+    name: 'feature',
+    component: FeatureDetail // 追加
+    }
+]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
-});
+})
 
-export default router;
+export default router
